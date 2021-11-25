@@ -1,0 +1,18 @@
+ersion: "3.9"
+networks:
+  vuego-network:
+    driver: bridge
+services:
+  go-backend:
+    image: axtrea/vuego-demo-back:backend
+    build: ./server
+    ports:
+      - "4001:4001"
+
+  vue-frontend:
+    image: axtrea/vuego-demo-front:frontend
+    ports:
+      - "5000:80"
+    build: ./spa
+    networks:
+      - vuego-network
